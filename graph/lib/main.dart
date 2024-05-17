@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graph/abc.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 void main() async {
@@ -18,7 +19,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'GraphQL Demo'),
+      home: const MyHomePage(
+        title: 'Graphgl',
+      ),
     );
   }
 }
@@ -89,10 +92,10 @@ class _MyHomePageState extends State<MyHomePage> {
       QueryOptions(
         document: gql(
           """query {
-  characters() {
-    results {
-      name
-      image 
+            characters() {
+            results {
+            name,
+            image,
     }
   }
   
@@ -100,13 +103,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
-
-// queryResult.data  // contains data
-// queryResult.exception // will give what exception you got /errors
-// queryResult.hasException // you can check if you have any exception
-
-// queryResult.context.entry<HttpLinkResponseContext>()?.statusCode  // to get status code of response
-
     setState(() {
       characters = queryResult.data!['characters']['results'];
       _loading = false;
